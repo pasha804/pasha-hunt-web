@@ -1,0 +1,38 @@
+[
+  {
+    "referenceId": "PSH-MWBYECGF-8ROD",
+    "timestamp": "2026-11-11T10:05:49.071Z",
+    "name": "Muhammad Mubashar QA",
+    "email": "pashadev804@gmail.com",
+    "organization": "Individual / Stealth",
+    "inquiryType": "General Inquiry",
+    "message": "This is an end-to-end verified test inquiry for Pasha Hunt 2.0."
+  },
+  {
+    "referenceId": "PSH-MWBYDUXI-0G80",
+    "timestamp": "2026-11-11T10:05:26.358Z",
+    "name": "Muhammad Mubashar QA",
+    "email": "pashadev804@gmail.com",
+    "organization": "Individual / Stealth",
+    "inquiryType": "General Inquiry",
+    "message": "Direct API test check with more than 10 characters"
+  },
+  {
+    "referenceId": "PSH-MWBU94RM-7WXF",
+    "timestamp": "2026-11-11T08:09:47.362Z",
+    "name": "Muhammad Mubashar QA",
+    "email": "pashadev804@gmail.com",
+    "organization": "Individual / Stealth",
+    "inquiryType": "General Inquiry",
+    "message": "This is an end-to-end verified test inquiry for Pasha Hunt 2.0."
+  },
+  {
+    "referenceId": "PSH-MWBU7TT5-13N0",
+    "timestamp": "2026-11-11T08:08:46.505Z",
+    "name": "Sarah Connor",
+    "email": "sconnor@cyberdyne.com",
+    "organization": "Resistance Corp",
+    "inquiryType": "Enterprise License",
+    "message": "We want to deploy Pasha Hunt 2.0 across our engineering organization."
+  }
+]
