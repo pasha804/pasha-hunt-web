@@ -59,6 +59,7 @@ export default function Dashboard({ user, onSignOut }: DashboardProps) {
   // CV Studio state
   const [cvViewVersion, setCvViewVersion] = useState<'active' | 'original'>('active');
   const [cvRefreshKey, setCvRefreshKey] = useState(Date.now());
+  const [cvDisplayMode, setCvDisplayMode] = useState<'split' | 'active-full' | 'baseline-full'>('split');
 
   useEffect(() => {
     fetchProfile();
@@ -253,7 +254,15 @@ export default function Dashboard({ user, onSignOut }: DashboardProps) {
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={onSignOut}
+            className="px-3 py-1.5 rounded-xl bg-[#17212A] border border-[#27343D] hover:border-[#F2AA4C]/50 hover:bg-[#27343D] text-[#B7B7AE] hover:text-white transition-all text-xs font-semibold flex items-center gap-1.5"
+            title="Return to Product Overview"
+          >
+            <span>←</span>
+            <span className="hidden sm:inline">Overview Landing</span>
+          </button>
           <div className="text-right hidden sm:block">
             <div className="text-xs font-bold text-white flex items-center justify-end gap-1.5">
               <span>{profileData?.name || 'Muhammad Mubashar'}</span>
@@ -264,7 +273,7 @@ export default function Dashboard({ user, onSignOut }: DashboardProps) {
           <button
             onClick={onSignOut}
             className="p-2 rounded-xl bg-[#17212A] border border-[#27343D] hover:bg-red-500/10 hover:border-red-500/40 text-[#858B8D] hover:text-red-400 transition-all text-xs flex items-center gap-1.5"
-            title="Sign Out"
+            title="Sign Out / Exit Workstation"
           >
             <LogOut className="w-4 h-4" />
           </button>
@@ -613,85 +622,184 @@ export default function Dashboard({ user, onSignOut }: DashboardProps) {
                 </div>
               </div>
 
-              {/* THE REAL AAMNE-SAAMNE (SIDE-BY-SIDE) SPLIT WORKSPACE */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* LEFT: BASELINE UNQUANTIFIED RESUME */}
-                <div className="p-5 rounded-2xl bg-[#17212A] border border-[#27343D] flex flex-col space-y-4">
-                  <div className="flex justify-between items-center pb-3 border-b border-[#27343D]">
-                    <div>
-                      <span className="text-[10px] font-bold text-[#858B8D] uppercase tracking-wider">Baseline Version</span>
-                      <h3 className="text-sm font-bold text-white flex items-center gap-1.5 mt-0.5">
-                        <span>📄 Original Unquantified Resume</span>
-                      </h3>
-                    </div>
-                    <span className="px-2.5 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-xs font-bold">
-                      78% Standard ATS
-                    </span>
-                  </div>
-
-                  {/* Rendered Baseline Frame */}
-                  <div className="h-[520px] rounded-xl overflow-hidden border border-[#27343D] bg-white shadow-inner">
-                    <iframe
-                      key={`orig-${cvRefreshKey}`}
-                      src="/api/cv/view?version=original"
-                      className="w-full h-full border-none"
-                      title="Baseline Resume Preview"
-                    />
-                  </div>
-
-                  {/* Identified Gaps in Baseline */}
-                  <div className="p-4 rounded-xl bg-[#101820] border border-red-500/25 space-y-2 text-xs">
-                    <div className="font-bold text-red-400 flex items-center gap-1.5">
-                      <span>⚠️ Pre-Optimization Vulnerabilities Identified:</span>
-                    </div>
-                    <ul className="space-y-1 text-[#858B8D] text-[11px] list-disc list-inside">
-                      <li>Unquantified duties without metric scale (lacks % latency, volume, user count).</li>
-                      <li>Passive action verbs ("Worked on", "Helped with", "Was responsible for").</li>
-                      <li>Missing core recruiter keywords (FastAPI, Redis, Docker, AST parsing).</li>
-                      <li>Ranks in lower 50% percentile of automated ATS parsers (Taleo, Greenhouse).</li>
-                    </ul>
-                  </div>
+              {/* CV Display Mode Tabs */}
+              <div className="flex items-center justify-between gap-4 flex-wrap">
+                <div className="flex items-center gap-2 p-1.5 rounded-xl bg-[#101820] border border-[#27343D] w-fit">
+                  <button
+                    onClick={() => setCvDisplayMode('split')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                      cvDisplayMode === 'split' ? 'bg-[#F2AA4C] text-black shadow-md' : 'text-[#858B8D] hover:text-white'
+                    }`}
+                  >
+                    ◫ Side-by-Side (Aamne Saamne)
+                  </button>
+                  <button
+                    onClick={() => setCvDisplayMode('active-full')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                      cvDisplayMode === 'active-full' ? 'bg-emerald-500 text-black shadow-md' : 'text-[#858B8D] hover:text-white'
+                    }`}
+                  >
+                    ⚡ Master 96% ATS CV (Full Page)
+                  </button>
+                  <button
+                    onClick={() => setCvDisplayMode('baseline-full')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                      cvDisplayMode === 'baseline-full' ? 'bg-amber-500 text-black shadow-md' : 'text-[#858B8D] hover:text-white'
+                    }`}
+                  >
+                    📄 Baseline Resume (Full Page)
+                  </button>
                 </div>
 
-                {/* RIGHT: MASTER ATS CV (ACTIVE & QUANTIFIED) */}
-                <div className="p-5 rounded-2xl bg-[#17212A] border-2 border-[#F2AA4C]/60 shadow-xl shadow-[#F2AA4C]/10 flex flex-col space-y-4">
-                  <div className="flex justify-between items-center pb-3 border-b border-[#27343D]">
-                    <div>
-                      <span className="text-[10px] font-extrabold text-[#F2AA4C] uppercase tracking-wider">Pasha Hunt Optimized</span>
-                      <h3 className="text-sm font-bold text-white flex items-center gap-1.5 mt-0.5">
-                        <Sparkles className="w-4 h-4 text-[#F2AA4C]" />
-                        <span>⚡ Master ATS CV (Google XYZ Standard)</span>
-                      </h3>
-                    </div>
-                    <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 text-xs font-extrabold">
-                      96% Elite ATS Ready
-                    </span>
-                  </div>
-
-                  {/* Rendered Master ATS Frame */}
-                  <div className="h-[520px] rounded-xl overflow-hidden border-2 border-emerald-500/40 bg-white shadow-xl">
-                    <iframe
-                      key={`active-${cvRefreshKey}`}
-                      src="/api/cv/view?version=active"
-                      className="w-full h-full border-none"
-                      title="Active Master ATS CV Preview"
-                    />
-                  </div>
-
-                  {/* Optimization Wins in Master ATS */}
-                  <div className="p-4 rounded-xl bg-[#101820] border border-emerald-500/30 space-y-2 text-xs">
-                    <div className="font-bold text-emerald-400 flex items-center gap-1.5">
-                      <span>✅ Elite ATS Architectural Enhancements:</span>
-                    </div>
-                    <ul className="space-y-1 text-emerald-200/80 text-[11px] list-disc list-inside">
-                      <li>Strict Google XYZ formulation: [Accomplished X] measured by [Y] by doing [Z].</li>
-                      <li>Verified facts grounded in 7 real projects (Pasha Hunt, DevPilot, SARA AI).</li>
-                      <li>Exact 1-column layout with 100% text parsing accuracy for Workday &amp; Lever.</li>
-                      <li>Includes verified contact channels (Phone, LinkedIn, GitHub, Portfolio).</li>
-                    </ul>
-                  </div>
+                <div className="text-xs text-[#858B8D] font-mono hidden md:block">
+                  A4 Single-Column ATS Spec • Scale-Compliant
                 </div>
               </div>
+
+              {/* THE REAL AAMNE-SAAMNE (SIDE-BY-SIDE) SPLIT WORKSPACE */}
+              {cvDisplayMode === 'split' && (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* LEFT: BASELINE UNQUANTIFIED RESUME */}
+                  <div className="p-5 rounded-2xl bg-[#17212A] border border-[#27343D] flex flex-col space-y-4">
+                    <div className="flex justify-between items-center pb-3 border-b border-[#27343D]">
+                      <div>
+                        <span className="text-[10px] font-bold text-[#858B8D] uppercase tracking-wider">Baseline Version</span>
+                        <h3 className="text-sm font-bold text-white flex items-center gap-1.5 mt-0.5">
+                          <span>📄 Original Unquantified Resume</span>
+                        </h3>
+                      </div>
+                      <span className="px-2.5 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-xs font-bold">
+                        78% Standard ATS
+                      </span>
+                    </div>
+
+                    {/* Rendered Baseline Frame */}
+                    <div className="h-[720px] rounded-xl overflow-hidden border border-[#27343D] bg-[#080D12] shadow-inner">
+                      <iframe
+                        key={`orig-${cvRefreshKey}`}
+                        src="/api/cv/view?version=original"
+                        className="w-full h-full border-none"
+                        title="Baseline Resume Preview"
+                      />
+                    </div>
+
+                    {/* Identified Gaps in Baseline */}
+                    <div className="p-4 rounded-xl bg-[#101820] border border-red-500/25 space-y-2 text-xs">
+                      <div className="font-bold text-red-400 flex items-center gap-1.5">
+                        <span>⚠️ Pre-Optimization Vulnerabilities Identified:</span>
+                      </div>
+                      <ul className="space-y-1 text-[#858B8D] text-[11px] list-disc list-inside">
+                        <li>Unquantified duties without metric scale (lacks % latency, volume, user count).</li>
+                        <li>Passive action verbs ("Worked on", "Helped with", "Was responsible for").</li>
+                        <li>Missing core recruiter keywords (FastAPI, Redis, Docker, AST parsing).</li>
+                        <li>Ranks in lower 50% percentile of automated ATS parsers (Taleo, Greenhouse).</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* RIGHT: MASTER ATS CV (ACTIVE & QUANTIFIED) */}
+                  <div className="p-5 rounded-2xl bg-[#17212A] border-2 border-[#F2AA4C]/60 shadow-xl shadow-[#F2AA4C]/10 flex flex-col space-y-4">
+                    <div className="flex justify-between items-center pb-3 border-b border-[#27343D]">
+                      <div>
+                        <span className="text-[10px] font-extrabold text-[#F2AA4C] uppercase tracking-wider">Pasha Hunt Optimized</span>
+                        <h3 className="text-sm font-bold text-white flex items-center gap-1.5 mt-0.5">
+                          <Sparkles className="w-4 h-4 text-[#F2AA4C]" />
+                          <span>⚡ Master ATS CV (Google XYZ Standard)</span>
+                        </h3>
+                      </div>
+                      <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 text-xs font-extrabold">
+                        96% Elite ATS Ready
+                      </span>
+                    </div>
+
+                    {/* Rendered Master ATS Frame */}
+                    <div className="h-[720px] rounded-xl overflow-hidden border-2 border-emerald-500/40 bg-[#080D12] shadow-xl">
+                      <iframe
+                        key={`active-${cvRefreshKey}`}
+                        src="/api/cv/view?version=active"
+                        className="w-full h-full border-none"
+                        title="Active Master ATS CV Preview"
+                      />
+                    </div>
+
+                    {/* Optimization Wins in Master ATS */}
+                    <div className="p-4 rounded-xl bg-[#101820] border border-emerald-500/30 space-y-2 text-xs">
+                      <div className="font-bold text-emerald-400 flex items-center gap-1.5">
+                        <span>✅ Elite ATS Architectural Enhancements:</span>
+                      </div>
+                      <ul className="space-y-1 text-emerald-200/80 text-[11px] list-disc list-inside">
+                        <li>Strict Google XYZ formulation: [Accomplished X] measured by [Y] by doing [Z].</li>
+                        <li>Verified facts grounded in 7 real projects (Pasha Hunt, DevPilot, SARA AI).</li>
+                        <li>Exact 1-column layout with 100% text parsing accuracy for Workday &amp; Lever.</li>
+                        <li>Includes verified contact channels (Phone, LinkedIn, GitHub, Portfolio).</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* FULL PAGE MASTER ATS CV */}
+              {cvDisplayMode === 'active-full' && (
+                <div className="p-6 rounded-2xl bg-[#17212A] border-2 border-emerald-500/50 shadow-2xl flex flex-col space-y-4">
+                  <div className="flex justify-between items-center pb-3 border-b border-[#27343D]">
+                    <div>
+                      <span className="text-[10px] font-extrabold text-emerald-400 uppercase tracking-wider">Full Page ATS Preview</span>
+                      <h3 className="text-base font-bold text-white flex items-center gap-1.5 mt-0.5">
+                        <Sparkles className="w-4 h-4 text-emerald-400" />
+                        <span>Muhammad Mubashar — Master ATS CV (96% Elite)</span>
+                      </h3>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 text-xs font-extrabold">
+                        96% Elite Score
+                      </span>
+                      <a
+                        href="/api/cv/view?version=active"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-3.5 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs rounded-lg transition-all flex items-center gap-1.5"
+                      >
+                        <Download className="w-3.5 h-3.5" /> Print / Save PDF
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="h-[880px] rounded-xl overflow-hidden border border-[#27343D] bg-[#080D12] shadow-2xl">
+                    <iframe
+                      key={`full-active-${cvRefreshKey}`}
+                      src="/api/cv/view?version=active"
+                      className="w-full h-full border-none"
+                      title="Master ATS CV Full Page"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* FULL PAGE BASELINE RESUME */}
+              {cvDisplayMode === 'baseline-full' && (
+                <div className="p-6 rounded-2xl bg-[#17212A] border border-[#27343D] shadow-2xl flex flex-col space-y-4">
+                  <div className="flex justify-between items-center pb-3 border-b border-[#27343D]">
+                    <div>
+                      <span className="text-[10px] font-bold text-[#858B8D] uppercase tracking-wider">Full Page Baseline</span>
+                      <h3 className="text-base font-bold text-white flex items-center gap-1.5 mt-0.5">
+                        <span>Original Uploaded Resume (78% Standard)</span>
+                      </h3>
+                    </div>
+                    <span className="px-3 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-xs font-bold">
+                      78% Baseline
+                    </span>
+                  </div>
+
+                  <div className="h-[880px] rounded-xl overflow-hidden border border-[#27343D] bg-[#080D12] shadow-2xl">
+                    <iframe
+                      key={`full-baseline-${cvRefreshKey}`}
+                      src="/api/cv/view?version=original"
+                      className="w-full h-full border-none"
+                      title="Baseline Resume Full Page"
+                    />
+                  </div>
+                </div>
+              )}
 
               {/* Google XYZ Live Impact Formulator */}
               <div className="p-6 rounded-2xl bg-[#17212A] border border-[#27343D] space-y-4">

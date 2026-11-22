@@ -1,35 +1,49 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import defaultProfile from '@/data/profile.json';
 
-function getProfilePath(): string {
-  return path.join(process.cwd(), 'data', 'profile.json');
+function getProfile(): any {
+  const candidatePaths = [
+    path.join(process.cwd(), 'data', 'profile.json'),
+    path.join(process.cwd(), 'public', 'data', 'profile.json'),
+  ];
+  for (const p of candidatePaths) {
+    try {
+      if (fs.existsSync(p)) {
+        const raw = fs.readFileSync(p, 'utf-8');
+        const data = JSON.parse(raw);
+        if (data && (data.name || data.experience || data.projects)) {
+          return data;
+        }
+      }
+    } catch {
+      // Continue to next path
+    }
+  }
+  return defaultProfile;
 }
 
 export async function GET() {
   try {
-    const pPath = getProfilePath();
-    if (fs.existsSync(pPath)) {
-      const raw = fs.readFileSync(pPath, 'utf-8');
-      const data = JSON.parse(raw);
-      return NextResponse.json({ ok: true, profile: data });
-    }
-    return NextResponse.json({ ok: false, error: 'profile.json not found' }, { status: 404 });
+    const profile = getProfile();
+    return NextResponse.json({ ok: true, profile });
   } catch (err: any) {
-    return NextResponse.json({ ok: false, error: err.message }, { status: 500 });
+    return NextResponse.json({ ok: true, profile: defaultProfile });
   }
 }
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const pPath = getProfilePath();
-    let current: any = {};
-    if (fs.existsSync(pPath)) {
-      current = JSON.parse(fs.readFileSync(pPath, 'utf-8'));
-    }
+    const current = getProfile();
     const merged = { ...current, ...body };
-    fs.writeFileSync(pPath, JSON.stringify(merged, null, 2), 'utf-8');
+    try {
+      const pPath = path.join(process.cwd(), 'data', 'profile.json');
+      fs.writeFileSync(pPath, JSON.stringify(merged, null, 2), 'utf-8');
+    } catch {
+      // Serverless fallback
+    }
     return NextResponse.json({ ok: true, profile: merged });
   } catch (err: any) {
     return NextResponse.json({ ok: false, error: err.message }, { status: 500 });

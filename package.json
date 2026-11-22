@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "node -e \"const fs=require('fs'); if(fs.existsSync('data/jobs.json')){ fs.mkdirSync('public/data', {recursive:true}); fs.copyFileSync('data/jobs.json', 'public/data/jobs.json'); fs.copyFileSync('data/profile.json', 'public/data/profile.json'); }\"",
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
