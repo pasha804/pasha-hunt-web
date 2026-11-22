@@ -1,13 +1,59 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import AmbientCanvas from "../components/AmbientCanvas";
 import NeuralRadar3D from "../components/NeuralRadar3D";
 import ComparisonMatrix3D from "../components/ComparisonMatrix3D";
 import ThreeDCard from "../components/ThreeDCard";
+import AuthModal from "../components/AuthModal";
+import OnboardingWizard from "../components/OnboardingWizard";
+import Dashboard from "../components/Dashboard";
+import { supabase } from "../lib/supabase";
 
 export default function PashaHuntLaunch() {
+  // Auth & Cloud SaaS State
+  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [authChecked, setAuthChecked] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [onboardingCompleted, setOnboardingCompleted] = useState(false);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        setCurrentUser(session.user);
+        checkProfile(session.user.id);
+      } else {
+        setAuthChecked(true);
+      }
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        setCurrentUser(session.user);
+        checkProfile(session.user.id);
+      } else {
+        setCurrentUser(null);
+        setAuthChecked(true);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const checkProfile = async (userId: string) => {
+    try {
+      const { data } = await supabase.from('profiles').select('onboarding_completed').eq('id', userId).single();
+      if (data?.onboarding_completed) {
+        setOnboardingCompleted(true);
+      }
+    } catch (e) {
+      // ignore
+    } finally {
+      setAuthChecked(true);
+    }
+  };
+
   // Workflow Tab State
   const [activeWorkflowTab, setActiveWorkflowTab] = useState<"discover" | "analyze" | "tailor" | "track">("discover");
 
@@ -218,6 +264,27 @@ export default function PashaHuntLaunch() {
     },
   ];
 
+  if (currentUser) {
+    if (onboardingCompleted) {
+      return (
+        <Dashboard
+          user={currentUser}
+          onSignOut={async () => {
+            await supabase.auth.signOut();
+            setCurrentUser(null);
+            setOnboardingCompleted(false);
+          }}
+        />
+      );
+    }
+    return (
+      <OnboardingWizard
+        user={currentUser}
+        onComplete={() => setOnboardingCompleted(true)}
+      />
+    );
+  }
+
   return (
     <div className="relative min-h-screen bg-[#070A0E] text-[#F7F3EA] selection:bg-[#FF6B00]/25 selection:text-white overflow-x-clip">
       {/* Three.js Ambient Particle Constellation */}
@@ -271,19 +338,22 @@ export default function PashaHuntLaunch() {
 
           {/* Actions */}
           <div className="flex items-center gap-5">
-            <a href="#transmission" className="text-sm font-semibold text-[#8E98A4] hover:text-white transition-colors">
+            <button
+              onClick={() => setAuthModalOpen(true)}
+              className="text-sm font-semibold text-[#8E98A4] hover:text-white transition-colors cursor-pointer"
+            >
               Sign In
-            </a>
-            <motion.a
+            </button>
+            <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              href="https://github.com/pasha804/pasha-hunt/releases/latest"
+              onClick={() => setAuthModalOpen(true)}
               className="px-5 py-2.5 rounded-full text-xs font-bold bg-[#FF6B00] text-black hover:bg-[#FF7A1A] transition-all shadow-lg shadow-[#FF6B00]/25 flex items-center gap-1.5 cursor-pointer"
             >
-              <span>Explore Pasha Hunt</span>
+              <span>Launch Workstation</span>
               <span>→</span>
-            </motion.a>
+            </motion.button>
           </div>
         </div>
       </header>
@@ -317,16 +387,16 @@ export default function PashaHuntLaunch() {
 
             {/* Action Buttons */}
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <motion.a
+              <motion.button
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                href="https://github.com/pasha804/pasha-hunt/releases/latest"
+                onClick={() => setAuthModalOpen(true)}
                 className="px-7 py-3.5 rounded-full text-sm font-bold bg-[#FF6B00] text-black hover:bg-[#FF7A1A] transition-all shadow-xl shadow-[#FF6B00]/30 flex items-center gap-2 cursor-pointer"
               >
-                <span>Explore Pasha Hunt</span>
+                <span>Launch Career Copilot</span>
                 <span>→</span>
-              </motion.a>
+              </motion.button>
 
               <button
                 onClick={() => setDemoOpen(true)}
@@ -1442,6 +1512,19 @@ export default function PashaHuntLaunch() {
           </div>
         )}
       </AnimatePresence>
+
+      {/* Supabase Authentication Modal (Login / Signup / Forgot Password) */}
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        onAuthSuccess={(user, isNew) => {
+          setCurrentUser(user);
+          setAuthModalOpen(false);
+          if (!isNew) {
+            checkProfile(user.id);
+          }
+        }}
+      />
     </div>
   );
 }
