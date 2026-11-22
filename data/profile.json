@@ -1,0 +1,317 @@
+{
+  "name": "Muhammad Mubashar",
+  "default_title": "AI Agentic Developer | Full-Stack Software Engineer | QA & Software Tester",
+  "contact": {
+    "phone": "+92 308 4453846",
+    "email": "pashadev804@gmail.com",
+    "linkedin": "https://linkedin.com/in/pasha-dev",
+    "github": "https://github.com/pasha804",
+    "portfolio": "https://pasha-portfolio-v10.vercel.app"
+  },
+  "location": "Lahore, Pakistan (Open to Worldwide Remote)",
+  "years": "2+",
+  "default_summary": "Autonomous AI Agentic Developer, Full-Stack Software Engineer, and QA Software Tester with deep expertise in building, testing, and deploying production-grade web applications, SaaS platforms, and native desktop systems. Specializes in Python, FastAPI, React, Next.js, Electron, and LLM Agent orchestration (tool-calling, AST reasoning, and multi-agent workflows). Experienced in end-to-end quality assurance (QA), manual and automated testing, exploratory testing, bug reporting, and performance audits across web, SaaS, and desktop applications. Architected Pasha Hunt 2.0 (an autonomous AI career agent desktop platform) and SARA AI 2.5 Pro.",
+  "experience": [
+    {
+      "id": "pasha-dev",
+      "company": "Pasha Dev",
+      "place": "Independent | Lahore, Pakistan (Remote)",
+      "title": "Founder & Full-Stack Developer",
+      "dates": "2024 to Present",
+      "note": "Independent / Founder",
+      "bullets": [
+        "Plan and direct development of full-stack web, AI, and desktop products: requirements, feature specs, architecture, and API design.",
+        "Integrate frontend, backend, databases, and third-party APIs; coordinate AI-assisted implementation and iterate on results.",
+        "Test and debug applications across frontend, backend, and deployment layers; manage GitHub repositories and deployments."
+      ]
+    },
+    {
+      "id": "pasha-qa-tester",
+      "company": "Pasha Dev & Independent QA",
+      "place": "Lahore, Pakistan (Remote)",
+      "title": "QA & Software Tester (Web, SaaS & Desktop Applications)",
+      "dates": "2024 to Present",
+      "note": "Software Quality Assurance",
+      "bullets": [
+        "Executed manual, exploratory, functional, and regression testing for web apps, SaaS platforms, and desktop software (Electron & Tkinter).",
+        "Authored comprehensive test cases, defect reports, and reproduction steps for frontend UI, REST API endpoints, and database operations.",
+        "Validated cross-browser compatibility, responsive design, and accessibility (a11y) standards across Windows, Chrome, and Edge environments.",
+        "Conducted automated API and smoke testing in Python (Pytest, Requests) ensuring zero-crash releases and high stability."
+      ]
+    },
+    {
+      "id": "tech-content-creator",
+      "company": "Tech Content Creator",
+      "place": "Lahore, Pakistan",
+      "title": "Educational Content Creator",
+      "dates": "August 2025 to Present",
+      "note": "Educational",
+      "bullets": [
+        "Create short-form educational content on web development, programming, and developer workflows (TikTok: @pasha_dev_)."
+      ]
+    },
+    {
+      "id": "python-instructor",
+      "company": "Python Instructor",
+      "place": "Remote",
+      "title": "Python Instructor",
+      "dates": "September 2025 to December 2025",
+      "note": "Independent",
+      "bullets": [
+        "Taught Python from beginner to intermediate level: variables, control flow, data structures, functions, and problem-solving.",
+        "Reviewed learner code, identified implementation errors, and gave structured technical feedback."
+      ]
+    },
+    {
+      "id": "personal-portfolio-web-developer",
+      "company": "Personal Portfolio Web Developer",
+      "place": "Lahore, Pakistan",
+      "title": "Web Developer",
+      "dates": "May 2024 to July 2024",
+      "note": "Contract",
+      "bullets": [
+        "Built a responsive portfolio with React and Tailwind CSS using component-based architecture; deployed on Netlify."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "pasha-hunt",
+      "name": "Pasha Hunt 2.0: Autonomous AI Career Agent & Job Hunter Desktop Platform",
+      "tech": "Python, Tkinter, PyInstaller, Headless Edge, IMAP/SMTP, Gemini/Apinex LLMs, Multi-threading",
+      "url": "https://github.com/pasha804/pasha-hunt",
+      "text": "Architected and built an autonomous career agent desktop platform that aggregates live tech opportunities from 16+ global and Pakistani channels. Features anti-hallucination fact-grounded ATS resume & cover letter generation into tailored PDFs, automated multi-draft Gmail IMAP workflows, real-time recruiter response tracking, and 1-click AI interview battle-pack generation. Conducted rigorous end-to-end QA, UI/UX polish with Windows 11 immersive dark mode, and packaged a native Windows installer.",
+      "bullets": [
+        "Architected an autonomous desktop career agent aggregating tech opportunities from 16+ global platforms, Pakistani software houses, and Facebook developer communities.",
+        "Engineered an anti-hallucination ATS resume & cover letter generation pipeline that compiles tailored PDFs grounded 100% in verified candidate profile facts.",
+        "Integrated automated multi-draft Gmail IMAP workflows, real-time recruiter response tracking, and 1-click interview preparation battle-packs.",
+        "Conducted end-to-end QA testing, performance profiling, Windows 11 dark mode UX design, and built automated PyInstaller & Inno Setup deployment pipelines."
+      ]
+    },
+    {
+      "id": "pasha-devpilot",
+      "name": "Pasha DevPilot: Autonomous AI Software Engineering Platform",
+      "tech": "Autonomous AI Agents, Python, FastAPI, IBM Granite, IBM Watsonx Assistant, AgentOps, Redis, REST APIs",
+      "url": "https://github.com/pasha804/pasha-devpilot",
+      "text": "Engineered an autonomous AI software engineering platform submitted to the IBM Bob 2.0 Hackathon. Implemented multi-agent reasoning loops, deterministic AST-based code generation, and automated test-fix cycles using IBM Granite, Watsonx Assistant, AgentOps observability, Redis caching, and FastAPI backend services. Successfully validated against real-world full-stack development tasks.",
+      "bullets": [
+        "Architected an autonomous AI software engineering platform submitted to the IBM Bob 2.0 Hackathon (Certificate ID: CMULAQHV7015NS601Y5X6N6K4).",
+        "Implemented multi-agent reasoning loops and deterministic AST-based code generation for robust full-stack software development.",
+        "Integrated IBM Granite LLMs, Watsonx Assistant, AgentOps telemetry, and Redis caching with automated test-fix validation cycles."
+      ]
+    },
+    {
+      "id": "sara-ai",
+      "name": "SARA AI 2.5 Pro: Desktop AI Companion",
+      "tech": "Electron, React, Three.js, Node.js, Python, SQLite (FTS5)",
+      "url": "https://github.com/pasha804/SARA-AI-2.5-Pro",
+      "text": "Built an Electron desktop app with a Node.js backend, a React/Three.js avatar interface, and Python automation modules; screen capture via Electron desktopCapturer. Implemented persistent memory in SQLite with FTS5 full-text search (facts, conversations, milestones, backups) and a multi-model provider adapter with fallback. Implemented browser automation (browser-use wrapper) and Discord webhook tooling. Voice streaming, barge-in, and vision assistance are in progress.",
+      "bullets": [
+        "Engineered an Electron desktop application featuring a Node.js backend, interactive Three.js 3D avatar, and Python automation engines.",
+        "Implemented persistent memory architecture in SQLite with FTS5 full-text search for conversation recall, facts, and backups.",
+        "Engineered multi-model LLM provider adapters with automated fallback routing, screen capture, and browser automation workflows."
+      ]
+    },
+    {
+      "id": "nexora",
+      "name": "Nexora: Skill-Based Social & Engineering Platform",
+      "tech": "React, TypeScript, Vite, Tailwind CSS, FastAPI, PostgreSQL, Docker, Redis",
+      "url": "",
+      "text": "Full-stack platform connecting users by professional skills, with posts, professional profiles, skill discovery, and skill-based tournaments. Implemented JWT authentication, real-time messaging, and RESTful APIs between the React frontend and FastAPI backend.",
+      "bullets": [
+        "Full-stack platform connecting software engineers via professional skill graphs, skill discovery matchmaking, and technical challenges.",
+        "Engineered secure JWT authentication, real-time messaging, and high-performance RESTful APIs connecting React frontend with FastAPI backend.",
+        "Implemented relational schema in PostgreSQL with Docker containerization and Redis state management."
+      ]
+    },
+    {
+      "id": "pasha-tools",
+      "name": "Pasha Tools: Multi-Tool Cloud SaaS Platform",
+      "tech": "React, Python, FastAPI, PostgreSQL/SQLite, Vercel, Railway",
+      "url": "https://pashatools.com",
+      "text": "Designed a platform of free online tools with separate frontend and backend deployments and FastAPI processing workflows. Implemented document-processing features and SEO-friendly routes; debugged backend failures in production deployment.",
+      "bullets": [
+        "Designed and deployed a suite of cloud-based web tools featuring separated frontend (Vercel) and backend microservices (Railway).",
+        "Implemented high-throughput document processing engines, REST APIs, and SEO-optimized dynamic routing."
+      ]
+    },
+    {
+      "id": "zoro",
+      "name": "Zoro 2.0: Native AI Desktop Voice Assistant",
+      "tech": "React, Python, Faster-Whisper, Edge-TTS, sherpa-onnx, AI APIs",
+      "url": "",
+      "text": "Designed a desktop architecture combining a React interface with a Python AI core for voice interaction and AI reasoning. Explored speech-to-text and text-to-speech pipelines, wake-word workflows, and real-time conversational interaction patterns.",
+      "bullets": [
+        "Developed a native desktop architecture pairing a modern React UI with an asynchronous Python voice AI core.",
+        "Implemented low-latency speech-to-text and text-to-speech pipelines using Faster-Whisper, Edge-TTS, and wake-word detection."
+      ]
+    },
+    {
+      "id": "ecommerce",
+      "name": "E-Commerce Platform & WISHORA Digital System",
+      "tech": "React, FastAPI, Next.js, TypeScript, Tailwind CSS, Framer Motion",
+      "url": "",
+      "text": "Built product listing, cart, and checkout features with backend APIs and database integration. Designed reusable template architecture and animation systems for a personalized digital product platform.",
+      "bullets": [
+        "Built dynamic product catalog, shopping cart, and checkout workflows backed by secure REST APIs.",
+        "Engineered reusable template components and fluid spring-physics UI animations."
+      ]
+    }
+  ],
+  "skills": {
+    "Languages": [
+      "Python",
+      "TypeScript",
+      "JavaScript",
+      "SQL",
+      "HTML5",
+      "CSS3"
+    ],
+    "Frontend": [
+      "React",
+      "Next.js",
+      "Vite",
+      "Tailwind CSS",
+      "Framer Motion"
+    ],
+    "Backend & APIs": [
+      "FastAPI",
+      "REST APIs",
+      "JWT authentication",
+      "API integration",
+      "WebSockets",
+      "Node.js"
+    ],
+    "Databases": [
+      "PostgreSQL",
+      "SQLite",
+      "Redis"
+    ],
+    "AI & Agents": [
+      "LLM API integration",
+      "Prompt engineering",
+      "AI-assisted development",
+      "AI output evaluation",
+      "Voice AI pipelines (Faster-Whisper, Edge-TTS)",
+      "Multi-agent workflows"
+    ],
+    "Desktop & Systems": [
+      "Electron",
+      "React",
+      "Three.js",
+      "Python automation"
+    ],
+    "Tools & Deployment": [
+      "Git",
+      "GitHub",
+      "Docker",
+      "Vercel",
+      "Railway",
+      "Netlify",
+      "Google Antigravity"
+    ],
+    "QA & Software Testing": [
+      "Web Application Testing",
+      "Desktop App QA (Windows/Electron)",
+      "SaaS Platform Testing",
+      "Manual & Exploratory QA",
+      "Test Cases & Defect Reporting",
+      "API Testing (Postman/FastAPI)",
+      "Regression & Smoke Testing",
+      "UI/UX & Accessibility Audits",
+      "Test Automation (Python/Pytest)"
+    ],
+    "AI & Agentic Systems": [
+      "Agentic AI Workflows",
+      "Autonomous AI Agents",
+      "Multi-Agent Orchestration",
+      "Tool Calling & Grounding",
+      "LLM API Integration (Gemini, DeepSeek, Claude)",
+      "Prompt Engineering & Fact Verification",
+      "Voice AI Pipelines (Faster-Whisper, Edge-TTS)"
+    ]
+  },
+  "education": "Bachelor of Science in Computer Science (BSCS) — Lahore | Intermediate in Computer Science (ICS) — Garrison College For Boys, Lahore (FBISE) | Matriculation — APS Boys Sarwar Road, Lahore Cantt",
+  "certifications": [
+    "IBM Bob 2.0 Hackathon Certificate of Completion — lablab.ai & NativelyAI (ID: CMULAQHV7015NS601Y5X6N6K4 | Sep 2026)",
+    "Python Programming Certificate — Coursera (2024)",
+    "Web Development Bootcamp — Udemy (2024)",
+    "Responsive Web Design — freeCodeCamp (2024)"
+  ],
+  "spoken_languages": [
+    "English (Advanced, C1)",
+    "Urdu (Native / Proficient, C2)",
+    "Punjabi (Advanced, C1)"
+  ],
+  "title": "AI Agentic Developer | Full-Stack Software Engineer | QA & Software Tester",
+  "target_role": "AI Agentic Developer | Full-Stack Software Engineer | QA & Software Tester",
+  "ats_score": 94,
+  "baseline_score": 94,
+  "original_score": 84,
+  "enhanced_score": 96,
+  "is_enhanced": true,
+  "is_already_ats": true,
+  "experiences": [
+    {
+      "id": "pasha-dev",
+      "company": "Pasha Dev",
+      "place": "Independent | Lahore, Pakistan (Remote)",
+      "title": "Founder & Full-Stack Developer",
+      "dates": "2024 to Present",
+      "note": "Independent / Founder",
+      "bullets": [
+        "Plan and direct development of full-stack web, AI, and desktop products: requirements, feature specs, architecture, and API design.",
+        "Integrate frontend, backend, databases, and third-party APIs; coordinate AI-assisted implementation and iterate on results.",
+        "Test and debug applications across frontend, backend, and deployment layers; manage GitHub repositories and deployments."
+      ]
+    },
+    {
+      "id": "pasha-qa-tester",
+      "company": "Pasha Dev & Independent QA",
+      "place": "Lahore, Pakistan (Remote)",
+      "title": "QA & Software Tester (Web, SaaS & Desktop Applications)",
+      "dates": "2024 to Present",
+      "note": "Software Quality Assurance",
+      "bullets": [
+        "Executed manual, exploratory, functional, and regression testing for web apps, SaaS platforms, and desktop software (Electron & Tkinter).",
+        "Authored comprehensive test cases, defect reports, and reproduction steps for frontend UI, REST API endpoints, and database operations.",
+        "Validated cross-browser compatibility, responsive design, and accessibility (a11y) standards across Windows, Chrome, and Edge environments.",
+        "Conducted automated API and smoke testing in Python (Pytest, Requests) ensuring zero-crash releases and high stability."
+      ]
+    },
+    {
+      "id": "tech-content-creator",
+      "company": "Tech Content Creator",
+      "place": "Lahore, Pakistan",
+      "title": "Educational Content Creator",
+      "dates": "August 2025 to Present",
+      "note": "Educational",
+      "bullets": [
+        "Create short-form educational content on web development, programming, and developer workflows (TikTok: @pasha_dev_)."
+      ]
+    },
+    {
+      "id": "python-instructor",
+      "company": "Python Instructor",
+      "place": "Remote",
+      "title": "Python Instructor",
+      "dates": "September 2025 to December 2025",
+      "note": "Independent",
+      "bullets": [
+        "Taught Python from beginner to intermediate level: variables, control flow, data structures, functions, and problem-solving.",
+        "Reviewed learner code, identified implementation errors, and gave structured technical feedback."
+      ]
+    },
+    {
+      "id": "personal-portfolio-web-developer",
+      "company": "Personal Portfolio Web Developer",
+      "place": "Lahore, Pakistan",
+      "title": "Web Developer",
+      "dates": "May 2024 to July 2024",
+      "note": "Contract",
+      "bullets": [
+        "Built a responsive portfolio with React and Tailwind CSS using component-based architecture; deployed on Netlify."
+      ]
+    }
+  ]
+}
