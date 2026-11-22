@@ -58,7 +58,7 @@ export default function Dashboard({ user, onSignOut }: DashboardProps) {
 
   // CV Studio state
   const [cvViewVersion, setCvViewVersion] = useState<'active' | 'original'>('active');
-  const [cvRefreshKey, setCvRefreshKey] = useState(Date.now());
+  const [cvRefreshKey, setCvRefreshKey] = useState<number>(0);
   const [cvDisplayMode, setCvDisplayMode] = useState<'split' | 'active-full' | 'baseline-full'>('split');
 
   useEffect(() => {

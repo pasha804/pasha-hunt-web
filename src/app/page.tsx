@@ -17,7 +17,7 @@ export default function PashaHuntLaunch() {
   const [authChecked, setAuthChecked] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [onboardingCompleted, setOnboardingCompleted] = useState(false);
-  const [workstationMode, setWorkstationMode] = useState<boolean>(false);
+  const [workstationMode, setWorkstationMode] = useState<boolean>(true);
   const [cvModalOpen, setCvModalOpen] = useState<boolean>(false);
 
   useEffect(() => {

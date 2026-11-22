@@ -170,6 +170,7 @@ export async function GET(req: Request) {
       recruiter_email: job.email || job.recruiter_email || '',
       description: job.text || job.description || '',
       fit_score: aiFitScore,
+      fitScore: aiFitScore,
       tags: job.tags || [job.category || 'Engineering', 'Verified Radar']
     };
   });
